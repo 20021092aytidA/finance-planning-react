@@ -8,11 +8,11 @@ export default function SubscriptionPage() {
   useEffect(() => {
     const userID = sessionStorage.getItem("userID");
     if (userID) {
-      getSubs(userID);
+      fetchSubs(userID);
     }
   }, []);
 
-  const getSubs = async (userID: string): Promise<void> => {
+  const fetchSubs = async (userID: string): Promise<void> => {
     setIsLoading(true);
 
     try {
@@ -33,7 +33,7 @@ export default function SubscriptionPage() {
 
   return (
     <div>
-      {isLoading ? <div>Sub fetching..</div> : null}
+      {isLoading ? <div>fetching subscriptions..</div> : null}
       <div></div>
     </div>
   );

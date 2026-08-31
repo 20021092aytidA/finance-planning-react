@@ -32,7 +32,7 @@ export default function PlanPage() {
 
   return (
     <div>
-      {isLoading ? <div>fetching plan..</div> : null}
+      {isLoading ? <div>fetching plans..</div> : null}
       <div></div>
     </div>
   );
