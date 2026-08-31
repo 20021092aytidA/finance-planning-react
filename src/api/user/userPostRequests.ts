@@ -1,8 +1,27 @@
+import { Register } from "react-router-dom";
 import { API_URL_V1 } from "../apiDetails";
+
+export type RegisterForm = {
+  email: string;
+  username: string;
+  password: string;
+};
+
+type User = {
+  id: number;
+  email: string;
+  username: string;
+};
 
 export type LoginForm = {
   email: string;
   password: string;
+};
+
+type CreateUserResponse = {
+  status: string | number;
+  resMsg: string;
+  data: User | null;
 };
 
 type LoginResponse = {
@@ -15,6 +34,35 @@ type LoginResponse = {
 type LogOutResponse = {
   status: string | number;
   resMsg: string;
+};
+
+export const createUser = async (
+  form: RegisterForm,
+): Promise<CreateUserResponse> => {
+  const res = await fetch(`${API_URL_V1}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  });
+  const resJSON = await res.json().catch(() => null);
+
+  if (res.ok) {
+    return {
+      status: resJSON.status,
+      resMsg: resJSON.message,
+      data: resJSON.data,
+    };
+  }
+
+  return {
+    status: resJSON ? resJSON.status : res.status,
+    resMsg: resJSON
+      ? `${resJSON.message} - ${resJSON.description}`
+      : "failed registering user!",
+    data: null,
+  };
 };
 
 export const loginUser = async (

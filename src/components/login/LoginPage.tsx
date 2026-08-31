@@ -73,9 +73,9 @@ export default function LoginPage(): React.ReactNode {
     e: React.MouseEvent<HTMLButtonElement>,
   ): Promise<void> => {
     e.preventDefault();
-    setBtnDisable(true);
 
     if (validateLogin()) {
+      setBtnDisable(true);
       try {
         const res = await loginUser(loginForm);
         if (res.status == 200) {
@@ -91,9 +91,6 @@ export default function LoginPage(): React.ReactNode {
         setBtnDisable(false);
       }
     }
-
-    //if not valid
-    setBtnDisable(false);
   };
 
   return (

@@ -1,5 +1,4 @@
 import Sidebar from "../components/sidebar/Sidebar";
-import Footer from "../components/footer/Footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { logOutUser } from "../api/user/userPostRequests";
