@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 
 export default function Sidebar(): React.ReactNode {
   return (
-    <div className="h-screen bg-amber-50">
+    <div className="p-2 h-screen bg-gray-700 text-white font-semibold">
       <div className="h-full flex flex-col justify-between">
         {/* WEB NAVIGATION */}
-        <ul>
+        <ul className="space-y-2">
           <li>
-            <Link to="/subscriptions">Subscriptions</Link>
+            <Link to="/subscription" className="hover:underline">
+              Subscription
+            </Link>
           </li>
           <li>
-            <Link to="/plans">Plans</Link>
+            <Link to="/plan" className="hover:underline">
+              Plan
+            </Link>
           </li>
         </ul>
         <div>Finance Planning Web</div>

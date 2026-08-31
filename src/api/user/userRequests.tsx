@@ -12,6 +12,11 @@ type LoginResponse = {
   token?: string;
 };
 
+type LogOutResponse = {
+  status: string | number;
+  resMsg: string;
+};
+
 export const loginUser = async (
   loginForm: LoginForm,
 ): Promise<LoginResponse> => {
@@ -39,5 +44,36 @@ export const loginUser = async (
     resMsg: resJson.message,
     id: resJson.id,
     token: resJson.token,
+  };
+};
+
+export const logOutUser = async (id: string): Promise<LogOutResponse> => {
+  const res = await fetch(`${API_URL_V1}/users/log-out/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const resJSON: any = await res.json().catch(() => null);
+
+  if (!res.ok) {
+    if (resJSON !== null) {
+      return {
+        status: resJSON.status,
+        resMsg: `${resJSON.message} - ${resJSON.description}`,
+      };
+    }
+
+    return {
+      status: res.status,
+      resMsg: `log out failed`,
+    };
+  }
+
+  return {
+    status: resJSON.status,
+    resMsg: resJSON.message,
   };
 };
