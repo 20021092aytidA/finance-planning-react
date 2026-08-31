@@ -17,13 +17,9 @@ export default function MainLayout() {
     if (id) {
       try {
         const res = await logOutUser(id);
-        if (res.status === 200) {
-          sessionStorage.clear();
-          navigate("/login");
-          return;
+        if (res.status !== 200) {
+          alert(`log out failed: ${res.resMsg}`);
         }
-
-        alert(`log out failed: ${res.resMsg}`);
       } catch (error) {
         alert(`log out failed: ${error}`);
       } finally {
@@ -31,6 +27,7 @@ export default function MainLayout() {
       }
     }
 
+    sessionStorage.clear();
     navigate("/login");
     setIsLogOut(false);
   };
