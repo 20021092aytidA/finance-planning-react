@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LoginForm, loginUser } from "../../api/user/userRequests";
+import { LoginForm, loginUser } from "../../api/user/userPostRequests";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage(): React.ReactNode {
