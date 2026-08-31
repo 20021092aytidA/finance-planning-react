@@ -8,6 +8,11 @@ export default function Sidebar(): React.ReactNode {
         {/* WEB NAVIGATION */}
         <ul className="space-y-2">
           <li>
+            <Link to="/dashboard" className="hover:underline">
+              Dashboard
+            </Link>
+          </li>
+          <li>
             <Link to="/subscription" className="hover:underline">
               Subscription
             </Link>

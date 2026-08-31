@@ -94,8 +94,8 @@ export default function LoginPage(): React.ReactNode {
   };
 
   return (
-    <div>
-      <div>
+    <div className="bg-gray-700 h-screen flex justify-center items-center">
+      <div className="p-2 rounded-sm bg-gray-100 w-100 flex flex-col space-y-2">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -103,14 +103,13 @@ export default function LoginPage(): React.ReactNode {
           name="email"
           value={loginForm.email}
           onChange={handleChange}
+          className="outline-1 rounded-sm p-1"
         />
-        {errorMsg.email ?? (
+        {errorMsg.email ? (
           <div className="text-sm text-red-700 font-semibold">
             {errorMsg.email}
           </div>
-        )}
-      </div>
-      <div>
+        ) : null}
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -118,16 +117,21 @@ export default function LoginPage(): React.ReactNode {
           name="password"
           value={loginForm.password}
           onChange={handleChange}
+          className="outline-1 rounded-sm p-1"
         />
-        {errorMsg.password ?? (
+        {errorMsg.password ? (
           <div className="text-sm text-red-700 font-semibold">
             {errorMsg.password}
           </div>
-        )}
+        ) : null}
+        <button
+          className="cursor-pointer hover:underline"
+          onClick={handleLogin}
+          disabled={btnDisable}
+        >
+          Login
+        </button>
       </div>
-      <button onClick={handleLogin} disabled={btnDisable}>
-        Login
-      </button>
     </div>
   );
 }

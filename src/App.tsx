@@ -1,7 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { noNavFootRoutes, routes, RouteType } from "./routes";
 import "./App.css";
-import Footer from "./components/footer/Footer";
 import MainLayout from "./layout/MainLayout";
 
 function App(): React.ReactNode {
@@ -9,6 +8,8 @@ function App(): React.ReactNode {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
           {noNavFootRoutes.map((route: RouteType) => {
             return <Route element={route.component} path={route.link} />;
           })}

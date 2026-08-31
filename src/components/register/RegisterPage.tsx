@@ -106,8 +106,8 @@ export default function RegisterPage(): React.ReactNode {
   };
 
   return (
-    <div>
-      <div>
+    <div className="bg-gray-700 h-screen flex justify-center items-center">
+      <div className="p-2 rounded-sm bg-gray-100 w-100 flex flex-col space-y-2">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -115,14 +115,13 @@ export default function RegisterPage(): React.ReactNode {
           name="email"
           value={registerForm.email}
           onChange={handleFormChange}
+          className="outline-1 rounded-sm p-1"
         />
-        {errorMsg.email ?? (
+        {errorMsg.email ? (
           <div className="text-sm text-red-700 font-semibold">
             {errorMsg.email}
           </div>
-        )}
-      </div>
-      <div>
+        ) : null}
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -130,14 +129,13 @@ export default function RegisterPage(): React.ReactNode {
           name="username"
           value={registerForm.username}
           onChange={handleFormChange}
+          className="outline-1 rounded-sm p-1"
         />
-        {errorMsg.username ?? (
+        {errorMsg.username ? (
           <div className="text-sm text-red-700 font-semibold">
             {errorMsg.username}
           </div>
-        )}
-      </div>
-      <div>
+        ) : null}
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -145,16 +143,21 @@ export default function RegisterPage(): React.ReactNode {
           name="password"
           value={registerForm.password}
           onChange={handleFormChange}
+          className="outline-1 rounded-sm p-1"
         />
-        {errorMsg.password ?? (
+        {errorMsg.password ? (
           <div className="text-sm text-red-700 font-semibold">
             {errorMsg.password}
           </div>
-        )}
+        ) : null}
+        <button
+          disabled={isLoading}
+          onClick={handleRegister}
+          className="cursor-pointer hover:underline"
+        >
+          Register
+        </button>
       </div>
-      <button disabled={isLoading} onClick={handleRegister}>
-        Register
-      </button>
     </div>
   );
 }
