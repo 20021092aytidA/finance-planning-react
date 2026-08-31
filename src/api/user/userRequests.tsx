@@ -1,4 +1,4 @@
-import { API_URL } from "../apiDetails";
+import { API_URL_V1 } from "../apiDetails";
 import { LoginFormType } from "../../components/login/LoginPage";
 
 type LoginResponse = {
@@ -11,7 +11,7 @@ type LoginResponse = {
 export const loginUser = async (
   loginForm: LoginFormType,
 ): Promise<LoginResponse> => {
-  const res = await fetch(`${API_URL}/users/login`, {
+  const res = await fetch(`${API_URL_V1}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
