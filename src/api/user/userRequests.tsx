@@ -1,5 +1,9 @@
 import { API_URL_V1 } from "../apiDetails";
-import { LoginFormType } from "../../components/login/LoginPage";
+
+export type LoginForm = {
+  email: string;
+  password: string;
+};
 
 type LoginResponse = {
   status: string | number;
@@ -9,7 +13,7 @@ type LoginResponse = {
 };
 
 export const loginUser = async (
-  loginForm: LoginFormType,
+  loginForm: LoginForm,
 ): Promise<LoginResponse> => {
   const res = await fetch(`${API_URL_V1}/users/login`, {
     method: "POST",
